@@ -1,0 +1,22 @@
+name: Build All
+
+on: [push,pull_request]
+jobs:
+  build_all:
+    name: "Build entire project"
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: |
+        apt-get update && apt-get upgrade -y
+        apt-get install clang make xorg-dev libwayland-dev libxkbcommon-dev wayland-protocols extra-cmake-modules -y
+
+    - name: Build debug
+      run: |
+        make config=debug -j${nproc}
+    - name: Build release
+      run: |
+        make config=release -j${nproc}
