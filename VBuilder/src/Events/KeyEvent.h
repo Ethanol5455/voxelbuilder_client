@@ -4,45 +4,56 @@
 
 #include <GLFW/glfw3.h>
 
+class KeyEvent : public Event {
+    public:
+	int GetKeyCode() const
+	{
+		return m_KeyCode;
+	}
 
-class KeyEvent : public Event
-{
-public:
-	int GetKeyCode() const { return m_KeyCode; }
-
-protected:
+    protected:
 	KeyEvent(int keyCode)
-		: m_KeyCode(keyCode) {}
+		: m_KeyCode(keyCode)
+	{
+	}
 
 	int m_KeyCode;
 };
 
-class KeyPressedEvent : public KeyEvent
-{
-public:
+class KeyPressedEvent : public KeyEvent {
+    public:
 	KeyPressedEvent(int keyCode, int repeatCount)
-		: KeyEvent(keyCode), m_RepeatCount(repeatCount) {}
+		: KeyEvent(keyCode)
+		, m_RepeatCount(repeatCount)
+	{
+	}
 
-	int GetRepeatCount() const { return m_RepeatCount; }
+	int GetRepeatCount() const
+	{
+		return m_RepeatCount;
+	}
 
 	EVENT_CLASS_TYPE(KeyPressed);
-private:
+
+    private:
 	int m_RepeatCount;
 };
 
-class KeyReleasedEvent : public KeyEvent
-{
-public:
+class KeyReleasedEvent : public KeyEvent {
+    public:
 	KeyReleasedEvent(int keyCode)
-		: KeyEvent(keyCode) {}
+		: KeyEvent(keyCode)
+	{
+	}
 
 	EVENT_CLASS_TYPE(KeyReleased);
 };
 
-class KeyTypedEvent : public KeyEvent
-{
+class KeyTypedEvent : public KeyEvent {
 	KeyTypedEvent(int keyCode)
-		: KeyEvent(keyCode) {}
+		: KeyEvent(keyCode)
+	{
+	}
 
 	EVENT_CLASS_TYPE(KeyTyped);
 };

@@ -4,10 +4,8 @@
 
 #include <chrono>
 
-
-class Timer
-{
-public:
+class Timer {
+    public:
 	Timer(bool printOnDelete = false);
 	~Timer();
 
@@ -15,8 +13,9 @@ public:
 
 	void Restart();
 
-private:
-	std::chrono::time_point<std::chrono::high_resolution_clock> m_StartTimepoint;
+    private:
+	std::chrono::time_point<std::chrono::high_resolution_clock>
+		m_StartTimepoint;
 
 	bool m_PrintOnDelete;
 };

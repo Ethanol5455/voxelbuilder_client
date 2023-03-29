@@ -11,24 +11,35 @@
 #include FT_FREETYPE_H
 
 #ifdef VB_DEBUG
-	#if defined(VB_PLATFORM_WINDOWS)
-		#define VB_DEBUGBREAK() __debugbreak()
-	#elif defined(VB_PLATFORM_LINUX)
-		#include <signal.h>
-		#define VB_DEBUGBREAK() raise(SIGTRAP)
-	#else
-		#error "Platform doesn't support debugbreak yet!"
-	#endif
-	#define VB_ENABLE_ASSERTS
+#if defined(VB_PLATFORM_WINDOWS)
+#define VB_DEBUGBREAK() __debugbreak()
+#elif defined(VB_PLATFORM_LINUX)
+#include <signal.h>
+#define VB_DEBUGBREAK() raise(SIGTRAP)
 #else
-	#define VB_DEBUGBREAK()
+#error "Platform doesn't support debugbreak yet!"
+#endif
+#define VB_ENABLE_ASSERTS
+#else
+#define VB_DEBUGBREAK()
 #endif
 
 // TODO: Make this macro able to take in no arguments except condition
 #ifdef VB_ENABLE_ASSERTS
-	#define VB_ASSERT(x, ...) { if(!(x)) { VB_ERROR("Assertion Failed: {0}", __VA_ARGS__); VB_DEBUGBREAK(); } }
+#define VB_ASSERT(x, ...)                                               \
+	{                                                               \
+		if (!(x)) {                                             \
+			VB_ERROR("Assertion Failed: {0}", __VA_ARGS__); \
+			VB_DEBUGBREAK();                                \
+		}                                                       \
+	}
 #else
-	#define VB_ASSERT(x, ...) { if(!(x)) { VB_ERROR("Assertion Failed: {0}", __VA_ARGS__); } }
+#define VB_ASSERT(x, ...)                                               \
+	{                                                               \
+		if (!(x)) {                                             \
+			VB_ERROR("Assertion Failed: {0}", __VA_ARGS__); \
+		}                                                       \
+	}
 #endif
 
 #define BIT(x) (1 << x)
