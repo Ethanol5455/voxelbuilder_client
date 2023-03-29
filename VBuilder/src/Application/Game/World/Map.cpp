@@ -22,11 +22,8 @@ void Map::FetchColumnFromServer(ENetPeer* server, int columnXPos, int columnZPos
 	std::vector<uint8_t> packetData = AssembleChunkRequestPacket(columnXPos, columnZPos);
 	ENetPacket* packet = enet_packet_create(&packetData[0], packetData.size(), ENET_PACKET_FLAG_RELIABLE);
 	enet_peer_send(server, 0, packet);
-	//VB_TRACE("Requesting column at {0},{1}", columnXPos, columnZPos);
 
 	m_InFlight.push_back(glm::ivec2{ columnXPos, columnZPos });
-
-	//BuildSurroundingMeshes(columnXPos, columnZPos);
 }
 
 void Map::IntegrateColumnFromServer(uint8_t* data, size_t dataLength)
@@ -128,8 +125,7 @@ void Map::BuildSurroundingMeshes(int columnXPos, int columnZPos)
 		if (column)
 		{
 			SetAllNeighbors(position.x, position.y);
-			//if (column->HasAllNeighbors())
-				column->BuildAllMeshes();
+			column->BuildAllMeshes();
 		}
 	}
 }
