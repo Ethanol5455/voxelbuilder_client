@@ -1,7 +1,7 @@
 #include "vbpch.h"
 #include "Input.h"
 
-Window* Input::m_Window;
+Window *Input::m_Window;
 
 double Input::MouseXPos;
 double Input::MouseYPos;
@@ -19,8 +19,7 @@ glm::vec2 Input::GetMousePosition()
 
 bool Input::IsKeyPressed(int key)
 {
-	if (glfwGetKey(m_Window->GetNativeWindow(), key) == GLFW_PRESS)
-	{
+	if (glfwGetKey(m_Window->GetNativeWindow(), key) == GLFW_PRESS) {
 		return true;
 	}
 	return false;

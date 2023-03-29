@@ -8,7 +8,7 @@
 //#define GLFW_EXPOSE_NATIVE_X11
 //#include <GLFW/glfw3native.h>
 
-std::string FileDialogs::OpenFile(Window& window, const char* filter)
+std::string FileDialogs::OpenFile(Window &window, const char *filter)
 {
 	char filename[1024];
 	FILE *f = popen("zenity --file-selection", "r");
@@ -16,7 +16,7 @@ std::string FileDialogs::OpenFile(Window& window, const char* filter)
 	return filename;
 }
 
-std::string FileDialogs::SaveFile(Window& window, const char* filter)
+std::string FileDialogs::SaveFile(Window &window, const char *filter)
 {
 	char filename[1024];
 	FILE *f = popen("zenity --save", "r");
@@ -24,7 +24,7 @@ std::string FileDialogs::SaveFile(Window& window, const char* filter)
 	return filename;
 }
 
-std::string FileDialogs::OpenDirectory(Window& window)
+std::string FileDialogs::OpenDirectory(Window &window)
 {
 	char filename[1024];
 	FILE *f = popen("zenity --file-selection --directory", "r");

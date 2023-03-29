@@ -3,17 +3,17 @@
 
 #include <glad/glad.h>
 
-
-GraphicsContext::GraphicsContext(GLFWwindow* windowHandle)
+GraphicsContext::GraphicsContext(GLFWwindow *windowHandle)
 	: m_WindowHandle(windowHandle)
 {
 	VB_ASSERT(windowHandle, "Window handle is null!")
 }
 
-static void OpenGLLogMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
+static void OpenGLLogMessage(GLenum source, GLenum type, GLuint id,
+			     GLenum severity, GLsizei length,
+			     const GLchar *message, const void *userParam)
 {
-	switch (severity)
-	{
+	switch (severity) {
 	case GL_DEBUG_SEVERITY_HIGH:
 		VB_ERROR("[OpenGL Debug HIGH] {0}", message);
 		VB_ASSERT(false, "GL_DEBUG_SEVERITY_HIGH");
@@ -33,7 +33,8 @@ static void OpenGLLogMessage(GLenum source, GLenum type, GLuint id, GLenum sever
 void GraphicsContext::Init()
 {
 	glfwMakeContextCurrent(m_WindowHandle);
-	VB_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Could not initialize GLAD");
+	VB_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress),
+		  "Could not initialize GLAD");
 
 	glDebugMessageCallback(OpenGLLogMessage, nullptr);
 	glEnable(GL_DEBUG_OUTPUT);
@@ -45,7 +46,9 @@ void GraphicsContext::Init()
 	VB_INFO("  Version: {0}", glGetString(GL_VERSION));
 	VB_INFO("GLFW Version: {0}", glfwGetVersionString());
 
-	VB_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 3), "VBuilder requires at least OpenGL version 4.3!");
+	VB_ASSERT(GLVersion.major > 4 ||
+			  (GLVersion.major == 4 && GLVersion.minor >= 3),
+		  "VBuilder requires at least OpenGL version 4.3!");
 }
 
 void GraphicsContext::SwapBuffers()

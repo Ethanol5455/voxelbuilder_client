@@ -21,35 +21,37 @@
 
 #include "Networking/Packets.h"
 
-
-class Game
-{
-public:
+class Game {
+    public:
 	Game() = default;
 	~Game() = default;
 
 	void Run();
 
-	void Stop() { m_Running = false; }
+	void Stop()
+	{
+		m_Running = false;
+	}
 
-private:
+    private:
 	int OnInit();
 	void OnUpdate();
 	void OnTerminate();
 
-	void OnEvent(Event& e);
-	bool OnWindowClose(WindowCloseEvent& e);
-	bool OnWindowResize(WindowResizeEvent& e);
-	bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-	bool OnKeyReleasedEvent(KeyReleasedEvent& e);
-	bool OnWindowContentScaleChangedEvent(WindowContentScaleChangedEvent& e);
+	void OnEvent(Event &e);
+	bool OnWindowClose(WindowCloseEvent &e);
+	bool OnWindowResize(WindowResizeEvent &e);
+	bool OnMouseButtonPressedEvent(MouseButtonPressedEvent &e);
+	bool OnKeyReleasedEvent(KeyReleasedEvent &e);
+	bool
+	OnWindowContentScaleChangedEvent(WindowContentScaleChangedEvent &e);
 
-private:
+    private:
 	bool m_Running = true;
 	bool m_Minimized = false;
 	bool m_HasInitialized = false;
 
-	Window* m_Window;
+	Window *m_Window;
 
 	float m_DeltaTime = 0.0f;
 	Timer m_DeltaTimer;
@@ -58,7 +60,7 @@ private:
 	Timer m_FPSTimer;
 	uint32_t m_FPS = 0;
 
-	glm::vec2 m_Resolution = {1920, 1080};
+	glm::vec2 m_Resolution = { 1920, 1080 };
 
 	std::unique_ptr<Texture> m_MapTextureAtlas;
 	std::unique_ptr<Texture> m_UtilTextureAtlas;
@@ -80,8 +82,8 @@ private:
 	std::unique_ptr<Texture> m_IndicatorTexture;
 
 	ENetAddress m_Address;
-	ENetHost* m_Client;
-	ENetPeer* m_Server;
+	ENetHost *m_Client;
+	ENetPeer *m_Server;
 
 	std::shared_ptr<Map> m_Map;
 

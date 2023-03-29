@@ -17,6 +17,11 @@
             "label": "Clean All",
             "type": "shell",
             "command": "make config=debug clean && make config=release clean"
+        },
+        {
+            "label": "Format",
+            "type": "shell",
+            "command": "find ./VBuilder -name \"*.cpp\" -or -name \"*.h\" | xargs clang-format -i -style=file"
         }
     ]
 }

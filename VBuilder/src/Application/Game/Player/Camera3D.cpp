@@ -4,8 +4,11 @@
 
 #include "glm/gtc/matrix_transform.hpp"
 
-Camera3D::Camera3D(const glm::vec3& position)
-	: m_Position(position), m_Front({ 0.0f, 0.0f, -1.0f }), m_Pitch(0.0f), m_Yaw(0.0f)
+Camera3D::Camera3D(const glm::vec3 &position)
+	: m_Position(position)
+	, m_Front({ 0.0f, 0.0f, -1.0f })
+	, m_Pitch(0.0f)
+	, m_Yaw(0.0f)
 {
 	m_PreviousMousePosition = Input::GetMousePosition();
 	m_Speed = 10.0f;
@@ -32,9 +35,11 @@ void Camera3D::Update(float deltaTime)
 	if (Input::IsKeyPressed(GLFW_KEY_S))
 		m_Position -= m_Front * speed;
 	if (Input::IsKeyPressed(GLFW_KEY_A))
-		m_Position -= glm::normalize(glm::cross(m_Front, m_UpDir)) * speed;
+		m_Position -=
+			glm::normalize(glm::cross(m_Front, m_UpDir)) * speed;
 	if (Input::IsKeyPressed(GLFW_KEY_D))
-		m_Position += glm::normalize(glm::cross(m_Front, m_UpDir)) * speed;
+		m_Position +=
+			glm::normalize(glm::cross(m_Front, m_UpDir)) * speed;
 
 	if (Input::IsKeyPressed(GLFW_KEY_SPACE))
 		m_Position.y += speed;
@@ -45,8 +50,7 @@ void Camera3D::Update(float deltaTime)
 	glm::vec2 mouseDifference = currentPosition - m_PreviousMousePosition;
 	m_PreviousMousePosition = currentPosition;
 
-	if (mouseDifference != glm::vec2(0.0f) || m_Position != prevPosition)
-	{
+	if (mouseDifference != glm::vec2(0.0f) || m_Position != prevPosition) {
 		//VB_INFO("({0}, {1}, {2})", m_Position.x, m_Position.y, m_Position.z);
 
 		m_Yaw += mouseDifference.x * m_Sensitivity;
@@ -56,7 +60,6 @@ void Camera3D::Update(float deltaTime)
 			m_Pitch = 89.9f;
 		else if (m_Pitch < -89.9f)
 			m_Pitch = -89.9f;
-
 
 		CalculateView();
 	}
@@ -70,8 +73,8 @@ void Camera3D::CalculateView()
 	direction.z = sin(glm::radians(m_Yaw)) * cos(glm::radians(m_Pitch));
 	m_Front = glm::normalize(direction);
 
-
-	glm::vec3 right = glm::normalize(glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), direction));
+	glm::vec3 right = glm::normalize(
+		glm::cross(glm::vec3(0.0f, 1.0f, 0.0f), direction));
 
 	glm::vec3 up = glm::cross(direction, right);
 

@@ -5,14 +5,13 @@
 #include "VertexBufferLayout.h"
 #include "Cubemap.h"
 
-class SkyboxRenderer
-{
-public:
+class SkyboxRenderer {
+    public:
 	static void Init();
 	static void Shutdown();
 
-	static void BeginScene(const glm::mat4& view, const glm::mat4& proj);
+	static void BeginScene(const glm::mat4 &view, const glm::mat4 &proj);
 	static void EndScene();
 
-	static void RenderSkybox(Cubemap& cubemap);
+	static void RenderSkybox(Cubemap &cubemap);
 };

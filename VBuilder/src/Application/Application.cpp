@@ -7,12 +7,12 @@
 #include "Utils/PlatformUtils.h"
 
 #ifdef VB_DEDICATED_GPU // Only defined on Windows
-	extern "C" {
-		_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
-	}
+extern "C" {
+_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+}
 #endif
 
-Game* game;
+Game *game;
 
 void HandleSignalCallback(int signum)
 {

@@ -1,14 +1,14 @@
 #ifndef VB_PLATFORM_LINUX
-	#pragma once
+#pragma once
 #endif
 
 #include <enet/enet.h>
 
 #ifdef VB_PLATFORM_WINDOWS
-	#ifndef NOMINMAX
-		#define NOMINMAX
-	#endif
-	#include <Windows.h>
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <Windows.h>
 #endif
 
 #include <iostream>
@@ -16,7 +16,6 @@
 #include <memory>
 #include <vector>
 #include <map>
-
 
 #include "Core/Base.h"
 

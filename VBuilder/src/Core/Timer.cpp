@@ -9,8 +9,7 @@ Timer::Timer(bool printOnDelete)
 
 Timer::~Timer()
 {
-	if (m_PrintOnDelete)
-	{
+	if (m_PrintOnDelete) {
 		float time = GetElapsedTime().AsMilliseconds();
 		VB_INFO("Timer ended after {0} ms", time);
 	}
@@ -20,8 +19,14 @@ Time Timer::GetElapsedTime()
 {
 	auto endTimepoint = std::chrono::high_resolution_clock::now();
 
-	auto start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimepoint).time_since_epoch().count();
-	auto end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
+	auto start = std::chrono::time_point_cast<std::chrono::microseconds>(
+			     m_StartTimepoint)
+			     .time_since_epoch()
+			     .count();
+	auto end = std::chrono::time_point_cast<std::chrono::microseconds>(
+			   endTimepoint)
+			   .time_since_epoch()
+			   .count();
 
 	auto duration = end - start;
 

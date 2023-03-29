@@ -1,9 +1,9 @@
 #include "vbpch.h"
 
 #ifdef VB_DEBUG
-	#define STBI_FAILURE_USERMSG
+#define STBI_FAILURE_USERMSG
 #else
-	#define STBI_NO_FAILURE_STRINGS
+#define STBI_NO_FAILURE_STRINGS
 #endif
 
 #define STB_IMAGE_IMPLEMENTATION

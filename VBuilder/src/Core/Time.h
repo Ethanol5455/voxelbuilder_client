@@ -1,11 +1,11 @@
 #pragma once
 
-
-class Time
-{
-public:
-	Time() : m_Time(0) {};
-	Time(long long time) : m_Time(time) {};
+class Time {
+    public:
+	Time()
+		: m_Time(0){};
+	Time(long long time)
+		: m_Time(time){};
 
 	float AsSeconds() const
 	{
@@ -21,6 +21,7 @@ public:
 	{
 		return (float)m_Time;
 	}
-private:
+
+    private:
 	long long m_Time; //Time in microseconds
 };
