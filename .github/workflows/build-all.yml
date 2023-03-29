@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install dependencies
       run: |
-        apt-get update && apt-get upgrade -y
+        apt-get update
         apt-get install clang make xorg-dev libwayland-dev libxkbcommon-dev wayland-protocols extra-cmake-modules -y
 
     - name: Build debug
