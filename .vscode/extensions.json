@@ -1,0 +1,7 @@
+{
+	"recommendations": [
+		"ms-vscode.cpptools",
+        "holychicken99.premake-snippets",
+        "ms-vscode.makefile-tools"
+	]
+}
