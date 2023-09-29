@@ -5,44 +5,41 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Client Debug",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
-            "preLaunchTask": "Build Debug",
-            "program": "${workspaceFolder}/bin/Debug-linux-x86_64/VBuilder/VBuilder",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/VBuilder",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
+            "name": "Debug executable 'voxelbuilder_client'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=voxelbuilder_client",
+                    "--package=voxelbuilder_client"
+                ],
+                "filter": {
+                    "name": "voxelbuilder_client",
+                    "kind": "bin"
                 }
-            ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
         },
         {
-            "name": "Client Release",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
-            "preLaunchTask": "Build Release",
-            "program": "${workspaceFolder}/bin/Release-linux-x86_64/VBuilder/VBuilder",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/VBuilder",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
+            "name": "Debug unit tests in executable 'voxelbuilder_client'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=voxelbuilder_client",
+                    "--package=voxelbuilder_client"
+                ],
+                "filter": {
+                    "name": "voxelbuilder_client",
+                    "kind": "bin"
                 }
-            ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
         }
     ]
 }

@@ -1,14 +1,1 @@
-# Directories
-*.vs
-**/bin/*
-**/bin-int/*
-
-scripts/dist
-VBuilder/temp
-
-# Files
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.user
-*Makefile
+/target
